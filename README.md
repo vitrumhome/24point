@@ -122,33 +122,42 @@
 
 所以遍历的表达式最多有24*64*5=7680种。即使采用逆波兰表达式，总数不变。
 
-* (A(B(CD))) => 
-* (A((BC)D)) => 
-* ((AB)(CD)) => A B op1  C D op3 op2
-* ((A(BC))D) => 
-* (((AB)C)D) => 
+* (A(B(CD))) => A B C D op3 op2 op1
+* (A((BC)D)) => A B C op2 D op3 op1
+* ((AB)(CD)) => A B op1 C D op3 op2
+* ((A(BC))D) => A B C op2 op1 D op3
+* (((AB)C)D) => A B op1 C op2 D op3
 
 ````
 /*24点游戏算法，穷举法： 
 
-f(Array)
+const opt = {生成3步运算的所有组合}
+
+const suffixes = {设置三步运算的5种逆波兰表达式}
+
+let workedList = {成功表达式}
+
+if(a,b,c,d)
 {
-   if(Array.Length<2)
-   {
-     if(得到的最终结果是24) 输出表达式
-     else 输出无符合要求的表达式
-   }
-   foreach(从数组中取任意两个数的组合)
-   {
-      foreach(运算符(+ - * /))
-      {
-         1、计算该组合在此运算符下的结果
-         2、将该组合中的两个数从原数组中删除，并将步骤1的结果放入数组
-         3、对新数组递归调用f。如果找到一个表达式就返回
-         4、将步骤1的计算结果移除，并将该组合中的两个数重新放回数组中对应的位置
-      } 
-   }
-}     
+    let myNumber = {生成输入4个数字的所有排序}
+    let list; 表达式数组 如 ["8", "8", "4", "4", "+", "+", "+"]
+    foreach(myNumber){
+        foreach(opt){
+            foreach(suffixes){
+                1、list 拼接数字和运算符号表达式数组
+                2、计算表达式值 RPN(list)
+                3、如果能求得24，记录翻译后的表达式并返回
+            }
+        } 
+    }
+}
+
+if (workedList.lenght > 0){
+    循环展示表达式
+}else{
+    这个数字组合无解
+}
+
 */
 ````
 
@@ -156,9 +165,32 @@ f(Array)
 
 1、采用逆波兰表达式，记录并运算所有穷举算式
 
-2、过滤，每步按照配置，过滤运算步骤中的负数和小数
+````
+// 根据算出的逆波兰表达式，计算这次4个数字的排序求值
 
-3、配置设置，是否包含JQK，是否包含小数负数，是否支持开方多次方
+function RPN(array) {
+    var i = 0;
+    var length = array.length;
+    var isBreak = false;
+    var value = 0;
+    var operatorList = {'+' : '', '-' : '', '*': '', '/':''};
+    for (; i < length; i++) {
+        if(array[i] in operatorList){
+            array.splice(i - 2, 3, eval('' + parseFloat(array[i - 2]) + array[i] + parseFloat(array[i - 1])));
+            break;
+        }
+    }
+    console.log('RPN',array);
+    if(array.length>1){
+        return RPN(array);
+    }else{
+        return array[0];
+    }
+}
+````
+
+
+2、配置设置，是否包含11/12/13，是否包含小数负数
 
 
 
