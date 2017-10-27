@@ -170,6 +170,7 @@ let backExp = [];
 let handleSubmit = () =>{
     backExp = [];
     c=0;
+    addLog('开始计算！');
     let fa = document.getElementById('fa').value ,
         fb = document.getElementById('fb').value ,
         fc = document.getElementById('fc').value ,
