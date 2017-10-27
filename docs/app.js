@@ -131,7 +131,7 @@ function timedCount(){
             infoBox.innerHTML =  '100%';
             return false;
         }
-        if(Number.isInteger(c/100)){
+        if(Number.isInteger(c/10)){
             upStatus();
         }
         c += 1;
