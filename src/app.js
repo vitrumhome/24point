@@ -45,7 +45,8 @@ function RPN(array) {
                     }
                     // console.log('tempValue',tempValue);
                     // tempValue = (new Function("","return "+tempExpWord))();
-                    if(tempValue<1 && hasDot(tempValue)){
+                    if(tempValue<1){
+                        // console.log('hasDot(tempValue)',tempValue,hasDot(tempValue))
                         return false;
                     }else {
                         array.splice(i - 2, 3, tempValue);
@@ -100,6 +101,11 @@ function addLog(info){
     newWord.innerHTML = info;
     infoBox.insertBefore(newWord,infoBox.childNodes[0]);
 }
+function upStatus(){
+    let infoBox = document.getElementById('status');
+    infoBox.innerHTML = (c / golExp.length * 100).toFixed(2) + '%';
+}
+
 let t,c=0;
 function timedCount(){   
     
@@ -121,7 +127,12 @@ function timedCount(){
         if(c === golExp.length - 1 ){
             clearInterval(iCount);
             addLog('完成计算！');
+            let infoBox = document.getElementById('status');
+            infoBox.innerHTML =  '100%';
             return false;
+        }
+        if(Number.isInteger(c/100)){
+            upStatus();
         }
         c += 1;
         for (var i = 0; i < golExp[c].length; i++) {
