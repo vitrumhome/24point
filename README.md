@@ -122,11 +122,7 @@
 
 所以遍历的表达式最多有24*64*5=7680种。即使采用逆波兰表达式，总数不变。
 
-* (A(B(CD))) => A B C D op3 op2 op1
-* (A((BC)D)) => A B C op2 D op3 op1
-* ((AB)(CD)) => A B op1 C D op3 op2
-* ((A(BC))D) => A B C op2 op1 D op3
-* (((AB)C)D) => A B op1 C op2 D op3
+
 
 ````
 /*24点游戏算法，穷举法： 
@@ -164,6 +160,12 @@ if (workedList.lenght > 0){
 ## 运算思路
 
 1、采用逆波兰表达式，记录并运算所有穷举算式
+
+* (A(B(CD))) => A B C D op3 op2 op1
+* (A((BC)D)) => A B C op2 D op3 op1
+* ((AB)(CD)) => A B op1 C D op3 op2
+* ((A(BC))D) => A B C op2 op1 D op3
+* (((AB)C)D) => A B op1 C op2 D op3
 
 ````
 // 根据算出的逆波兰表达式，计算这次4个数字的排序求值
@@ -211,3 +213,7 @@ https://segmentfault.com/q/1010000000664346
 24点游戏
 
 http://www.baike.com/wiki/24%E7%82%B9%E6%B8%B8%E6%88%8F
+
+后缀表达式转换为中缀表达式
+
+http://www.cnblogs.com/unixfy/archive/2013/08/19/3269071.html
