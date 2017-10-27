@@ -11,15 +11,19 @@ function RPN(array) {
     let value = 0;
     try {
         let tempValue = 0;
+        let tempExpWord ='';
         for (; i < length; i++) {
             if(array[i] in operatorList){
                 // console.log('1',array[i],i)
                 if( (parseFloat(array[i - 2]) && parseFloat(array[i - 1]) ) ){
                     // console.log('2',array,i);
-                    tempValue = eval('' + parseFloat(array[i - 2]) + ' ' + array[i]+ ' ' + parseFloat(array[i - 1]));
+                    // tempValue = 9;
+                    // tempValue = eval('' + parseFloat(array[i - 2]) + ' ' + array[i]+ ' ' + parseFloat(array[i - 1]));
+                    tempExpWord = parseFloat(array[i - 2]) + ' ' + array[i]+ ' ' + parseFloat(array[i - 1]);
+                    console.log('tempExpWord',tempExpWord);
+                    tempValue = (new Function("","return "+tempExpWord))();
                     array.splice(i - 2, 3, tempValue);
                 }
-                
                 break;
             }
         }
@@ -79,9 +83,26 @@ function addLog(info){
     newWord.innerHTML = info;
     infoBox.appendChild(newWord);
 }
-
-function callWorker(){
-    
+let t,c=0;
+function timedCount(exp){   
+    c++;
+    // console.log(exp);
+    if(c < exp.length){
+        let tempExp = exp[c];
+        console.log('tempExp',tempExp,c,new Date() );
+        if (RPN(tempExp) === 24){
+            console.log(exp[c],'get 24');
+            addLog(exp[c]);
+        };
+        t=setTimeout(timedCount(exp),2000);
+    }else{
+        clearTimeout(t);
+    }
+}
+function callWorker(exp){
+    let myExp = exp;
+    // console.log(myExp);
+    timedCount(myExp);
 }
 
 const opt = getOpt(['+' , '-' , '*', '/']);
@@ -137,6 +158,7 @@ let handleSubmit = () =>{
         }, this);
     }, this);
     console.log('myExp',myExp);
+    callWorker(myExp);
     // myExp.forEach(function(element) {
     //     // if (RPN(element) === 24){
     //     //     console.log(tempList,'get 24');
