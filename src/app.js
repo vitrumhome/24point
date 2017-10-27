@@ -116,38 +116,35 @@ let handleSubmit = () =>{
     console.log(suffixes,allNumberList,opt);
     let tempList = [];
     let myExp = [];
-    let count = 0;
     suffixes.forEach(function(suffElement) {
-        
         allNumberList.forEach(function(numElement) {
             // console.log(suffElement);
             opt.forEach(function(optElement) {
                 arrList = {'fa' : numElement[0], 'fb' : numElement[1], 'fc': numElement[2], 'fd':numElement[3]};
                 // console.log('optElement',optElement,optElement.op1);
                 tempList = [];
-                myExp = [];
                 for (var i = 0; i < suffElement.length; i++) {
                     if(suffElement[i].includes('op')){
                         // console.log(suffElement[i],optElement[suffElement[i]]);
                         tempList.push(optElement[suffElement[i]]);
-                        myExp.push(optElement[suffElement[i]]);
                     }else{
                         // console.log(suffElement[i],arrList[suffElement[i]]);
                         tempList.push(arrList[suffElement[i]]);
-                        myExp.push(arrList[suffElement[i]]);
                     }
                 }
-                count++
-                console.log('No',count,myExp);
-                // let myExp = tempList;
-                // myExp = RPN(myExp);
-                // if (myExp === 24){
-                //     console.log(tempList,'get 24');
-                //     addLog(tempList);
-                // };
+                myExp.push(tempList);
             }, this);
         }, this);
     }, this);
+    console.log('myExp',myExp);
+    // myExp.forEach(function(element) {
+    //     // if (RPN(element) === 24){
+    //     //     console.log(tempList,'get 24');
+    //     //     addLog(tempList);
+    //     // };
+
+    //     console.log(element)
+    // }, this);
     // document.getElementById('console').innerText = RPN(arrList);
 }
 
