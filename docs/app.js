@@ -45,7 +45,7 @@ function RPN(array) {
                     }
                     // console.log('tempValue',tempValue);
                     // tempValue = (new Function("","return "+tempExpWord))();
-                    if(tempValue<1){
+                    if(tempValue<1 || !Number.isInteger(tempValue) ) {
                         // console.log('hasDot(tempValue)',tempValue,hasDot(tempValue))
                         return false;
                     }else {
