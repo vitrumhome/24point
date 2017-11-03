@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>24点</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <style type="text/css">
+    .clear { /* generic container (i.e. div) for floating buttons */
+        overflow: hidden;
+        width: 60%;
+    }
+      html {
+        font-family: "Lucida Grande", Lucida, Geneva, Helvetica, Arial, sans-serif;
+      }
+    a.button {
+        background-color: #fafafa;
+        border-color: #e8e8e8;
+        color: rgba(0,0,0,0.85);
+        padding: 3px 10px;
+        display: block;
+        float: left;
+        font: normal 12px arial, sans-serif;
+        height: 24px;
+        margin-right: 6px;
+        padding-right: 18px; /* sliding doors padding */
+        text-decoration: none;
+    }
+    
+    a.button span {
+        background: transparent url('bg_button_span.gif') no-repeat;
+        display: block;
+        line-height: 14px;
+        padding: 5px 0 5px 18px;
+    }
+    a.button:active {
+        background-position: bottom right;
+        color: #000;
+        outline: none; /* hide dotted outline in Firefox */
+    }
+    
+    a.button:active span {
+        background-position: bottom left;
+        padding: 6px 0 4px 18px; /* push text down 1px */
+    }
+    
+
+    </style>
+    <script src="demo2/str.js"></script>
+    
+</head>
+
+<body>
+  <div class="box">
+    <p><h3>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击 <font color = blue>4</font> 个数字 </h><br> 
+        
+        
+        <p style="margin-bottom: 10px; margin-left: 100px;" id="inputs"> <br></p>
+         
+        <div class="clear" style="margin-bottom: 10px; margin-left:  50px;">
+                        <a class="button" onclick="this.blur(); go_to(1)"><span>1</span></a>
+                        <a class="button"   onclick="this.blur(); go_to(2)"><span>2</span></a>
+                        <a class="button"   onclick="this.blur(); go_to(3)"><span>3</span></a>
+        </div>
+        
+        <div class="clear" style="margin-bottom: 10px; margin-left:  50px;">
+                        <a class="button"   onclick="this.blur(); go_to(4)"><span>4</span></a>
+                        <a class="button"   onclick="this.blur(); go_to(5)"><span>5</span></a>
+                        <a class="button"   onclick="this.blur(); go_to(6)"><span>6</span></a>
+        </div>
+        <div class="clear" style="margin-bottom: 10px; margin-left:  50px;">
+                        <a class="button"   onclick="this.blur(); go_to(7)"><span>7</span></a>
+                        <a class="button"   onclick="this.blur(); go_to(8)"><span>8</span></a>
+                        <a class="button"   onclick="this.blur(); go_to(9)"><span>9</span></a>
+        </div>
+        
+        <div class="clear" style="margin-bottom: 10px; margin-left:  40px;">
+                        <a class="button"   onclick="this.blur(); go_to(10)"><span>10</span></a>
+                        <a class="button"   onclick="this.blur(); go_to(11)"><span>11</span></a>
+                        <a class="button"   onclick="this.blur(); go_to(12)"><span>12</span></a>
+        </div>
+        
+        <div class="clear" style="margin-bottom: 10px; margin-left:  95px;">
+                        <a class="button"   onclick="this.blur(); go_to(13)"><span>13</span></a>
+        
+        </div>
+        <div class="clear" style="margin-bottom: 10px; margin-left:  86px;">
+                        <a class="button"   onclick="this.blur(); go_to(-1)"><span><font size = "5">&larr;</font></span></a>
+        
+        </div>
+        <p id="outputs" style="  margin-left: 6px;"><br></p>
+  </div>    
+    <script src="demo2/app.js"></script>
+</body>
+</html>
