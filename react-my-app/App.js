@@ -1,37 +1,60 @@
 import React, { Component }  from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View ,TextInput,Alert,} from 'react-native';
+import { Button } from 'react-native-elements'
 
+const onButtonPress = () => {
+  Alert.alert('Button has been pressed!');
+};
 
-
-class Greeting extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { showText: true };
-
-    // 每1000毫秒对showText状态做一次取反操作
-    setInterval(() => {
-      this.setState(previousState => {
-        return { showText: !previousState.showText };
-      });
-    }, 400);
-  }
-
-  render() {
-    // 根据当前showText的值决定是否显示text内容
-    let display = this.state.showText ? this.props.name : ' ';
-    return (
-      <Text>{display}</Text>
-    );
-  }
-}
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      num1: 0,
+      num2: 0,
+      num3: 0,
+      num4: 0
+    };
+  }
+  
   render() {
     return (
       <View style={styles.container}>
-        <Greeting name='Rexxar' />
-        <Greeting name='Jaina' />
-        <Greeting name='Valeera' />
+        <TextInput
+          style={{height: 40}}
+          placeholder="数字1"
+          onChangeText={(num1) => this.setState({num1})}
+        />
+        <TextInput
+          style={{height: 40}}
+          placeholder="数字2"
+          onChangeText={(num2) => this.setState({num2})}
+        />
+        <TextInput
+          style={{height: 40}}
+          placeholder="数字3"
+          onChangeText={(num3) => this.setState({num3})}
+        />
+        <TextInput
+          style={{height: 40}}
+          placeholder="数字4"
+          onChangeText={(num4) => this.setState({num4})}
+        />
+        <Text style={{padding: 10, fontSize: 42}}>
+          {this.state.num1 + ',' + this.state.num2 + ',' + this.state.num3 + ',' + this.state.num4 + '.'}
+        </Text>
+        <Button
+            onPress={onButtonPress}
+            title="Ok!"
+            color="#841584"
+            accessibilityLabel="Ok, Great!"
+        />
+        <Button
+          onPress={onButtonPress}
+          large
+          icon={{name: 'envira', type: 'font-awesome'}}
+          title='Ok!' />
       </View>
     );
   }
