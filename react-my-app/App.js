@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
-import { StyleSheet, Text, View ,TextInput,Alert,} from 'react-native';
-import { Button } from 'react-native-elements'
+import { StyleSheet,  View ,TextInput,Alert,} from 'react-native';
+import {Text, Button ,FormLabel, FormInput} from 'react-native-elements'
 
 const onButtonPress = () => {
   Alert.alert('Button has been pressed!');
@@ -21,40 +21,30 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          style={{height: 40}}
-          placeholder="数字1"
-          onChangeText={(num1) => this.setState({num1})}
-        />
-        <TextInput
-          style={{height: 40}}
-          placeholder="数字2"
-          onChangeText={(num2) => this.setState({num2})}
-        />
-        <TextInput
-          style={{height: 40}}
-          placeholder="数字3"
-          onChangeText={(num3) => this.setState({num3})}
-        />
-        <TextInput
-          style={{height: 40}}
-          placeholder="数字4"
-          onChangeText={(num4) => this.setState({num4})}
-        />
+        <Text h1>24 Points</Text>
+        <Button
+          onPress={onButtonPress}
+          backgroundColor='#ab3333'
+          large
+          icon={{name: 'envira', type: 'font-awesome'}}
+          title='开始计算' />
+        <FormLabel>数字1</FormLabel>
+        <FormInput keyboardType='numeric' maxLength={2} onChangeText={(num) => this.setState({num1:num.replace(/[^0-9]/g, '')})}/>
+        <FormLabel>数字2</FormLabel>
+        <FormInput keyboardType='numeric' maxLength={2} onChangeText={(num) => this.setState({num2:num.replace(/[^0-9]/g, '')})}/>
+        <FormLabel>数字3</FormLabel>
+        <FormInput keyboardType='numeric' maxLength={2} onChangeText={(num) => this.setState({num3:num.replace(/[^0-9]/g, '')})}/>
+        <FormLabel>数字4</FormLabel>
+        <FormInput keyboardType='numeric' maxLength={2} onChangeText={(num) => this.setState({num4:num.replace(/[^0-9]/g, '')})}/>
         <Text style={{padding: 10, fontSize: 42}}>
           {this.state.num1 + ',' + this.state.num2 + ',' + this.state.num3 + ',' + this.state.num4 + '.'}
         </Text>
-        <Button
-            onPress={onButtonPress}
-            title="Ok!"
-            color="#841584"
-            accessibilityLabel="Ok, Great!"
-        />
-        <Button
-          onPress={onButtonPress}
-          large
-          icon={{name: 'envira', type: 'font-awesome'}}
-          title='Ok!' />
+        <Text h1>24 Points</Text>
+        <Text h1>24 Points</Text>
+        <Text h1>24 Points</Text>
+        <Text h1>24 Points</Text>
+
+        
       </View>
     );
   }
